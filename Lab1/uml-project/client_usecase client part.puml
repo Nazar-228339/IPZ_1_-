@@ -1,0 +1,13 @@
+@startuml client_usecase
+actor "Клієнт" as Client
+actor "Адміністратор" as Admin
+
+rectangle "Клієнтська частина" {
+  Client -- (Перегляд послуг)
+  Client -- (Запис на процедуру)
+  Client -- (Редагування запису)
+  Client -- (Скасування запису)
+  
+  Admin -- (Перегляд розкладу)
+}
+@enduml
