@@ -1,0 +1,14 @@
+@startuml server_usecase
+actor "Адміністратор" as Admin
+actor "Система" as System
+
+rectangle "Серверна частина" {
+  Admin -- (Керування клієнтами)
+  Admin -- (Додавання послуг)
+  Admin -- (Формування розкладу)
+  Admin -- (Перегляд звітів)
+
+  System -- (Збереження даних у БД)
+  System -- (Перевірка доступності майстрів)
+}
+@enduml
