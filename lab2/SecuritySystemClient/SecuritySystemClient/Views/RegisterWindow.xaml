@@ -1,0 +1,116 @@
+﻿<Window x:Class="SecuritySystemClient.Views.RegisterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Реєстрація нового користувача" 
+        Height="500" Width="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/AppStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundColor}">
+        <Border Background="White" 
+                CornerRadius="10" 
+                Margin="20">
+            <StackPanel VerticalAlignment="Top" Margin="20">
+                <TextBlock Text="📝 Реєстрація" 
+                          FontSize="22"
+                          FontWeight="Bold"
+                          Foreground="#2C3E50"
+                          HorizontalAlignment="Center"
+                          Margin="0,10,0,15"/>
+
+                <Label Content="Логін:" 
+                      FontSize="13"
+                      FontWeight="Medium"
+                      Foreground="#2C3E50"
+                      Margin="5,5,5,0"/>
+                <TextBox x:Name="UsernameTextBox" 
+                        FontSize="13"
+                        Padding="8"
+                        Margin="5,0,5,5"/>
+
+                <Label Content="Пароль:" 
+                      FontSize="13"
+                      FontWeight="Medium"
+                      Foreground="#2C3E50"
+                      Margin="5,5,5,0"/>
+                <PasswordBox x:Name="PasswordBox" 
+                            FontSize="13"
+                            Padding="8"
+                            Margin="5,0,5,5"
+                            PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                <Label Content="Підтвердіть пароль:" 
+                      FontSize="13"
+                      FontWeight="Medium"
+                      Foreground="#2C3E50"
+                      Margin="5,5,5,0"/>
+                <PasswordBox x:Name="ConfirmPasswordBox" 
+                            FontSize="13"
+                            Padding="8"
+                            Margin="5,0,5,5"/>
+
+                <TextBlock x:Name="ErrorMessage" 
+                          Foreground="Red"
+                          FontSize="11"
+                          Margin="5"
+                          TextWrapping="Wrap"
+                          Visibility="Collapsed"/>
+
+                <StackPanel Orientation="Horizontal" 
+                           HorizontalAlignment="Center"
+                           Margin="0,15,0,10">
+                    <Button Content="Зареєструватися" 
+                           Background="#27AE60"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Padding="12,6"
+                           Margin="5"
+                           Width="140"
+                           Cursor="Hand"
+                           BorderThickness="0"
+                           Click="RegisterButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Content="Скасувати" 
+                           Background="#E74C3C"
+                           Foreground="White"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           Padding="12,6"
+                           Margin="5"
+                           Width="110"
+                           Cursor="Hand"
+                           BorderThickness="0"
+                           Click="CancelButton_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                                    VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
