@@ -1,0 +1,128 @@
+﻿<Window x:Class="SecuritySystemClient.Views.ArchiveWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Архів записів" 
+        Height="600" Width="900"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/AppStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundColor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <Border Grid.Row="0" 
+                Background="{StaticResource PrimaryColor}"
+                Padding="15">
+            <TextBlock Text="📊 Архів відеозаписів"
+                      FontSize="20"
+                      FontWeight="Bold"
+                      Foreground="White"/>
+        </Border>
+
+        <!-- Панель фільтрів -->
+        <Border Grid.Row="1" 
+                Background="White"
+                Padding="15"
+                Margin="10,10,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Від:" 
+                      Style="{StaticResource ModernLabelStyle}"
+                      Grid.Column="0"/>
+                <DatePicker x:Name="StartDatePicker"
+                           Grid.Column="1"
+                           Margin="5"/>
+
+                <Label Content="До:" 
+                      Style="{StaticResource ModernLabelStyle}"
+                      Grid.Column="2"/>
+                <DatePicker x:Name="EndDatePicker"
+                           Grid.Column="3"
+                           Margin="5"/>
+
+                <Button Content="🔍 Пошук"
+                       Grid.Column="4"
+                       Style="{StaticResource PrimaryButtonStyle}"
+                       Click="SearchButton_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- Список архівів -->
+        <Border Grid.Row="2" 
+                Background="White"
+                Margin="10"
+                CornerRadius="10"
+                Padding="10">
+            <DataGrid x:Name="ArchiveDataGrid"
+                     Style="{StaticResource ModernDataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                    <DataGridTextColumn Header="Камера" Binding="{Binding CameraName}" Width="*"/>
+                    <DataGridTextColumn Header="Дата/Час" Binding="{Binding Timestamp, StringFormat='dd.MM.yyyy HH:mm:ss'}" Width="150"/>
+                    <DataGridTextColumn Header="Тривалість" Binding="{Binding Duration}" Width="100"/>
+                    <DataGridTextColumn Header="Тип події" Binding="{Binding EventType}" Width="120"/>
+                    <DataGridTemplateColumn Header="Дії" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="▶️" 
+                                           Margin="2"
+                                           Padding="5"
+                                           ToolTip="Відтворити"
+                                           Click="PlayButton_Click"/>
+                                    <Button Content="💾" 
+                                           Margin="2"
+                                           Padding="5"
+                                           ToolTip="Завантажити"
+                                           Click="DownloadButton_Click"/>
+                                    <Button Content="🗑️" 
+                                           Margin="2"
+                                           Padding="5"
+                                           ToolTip="Видалити"
+                                           Click="DeleteRecordButton_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Нижня панель -->
+        <Border Grid.Row="3" 
+                Background="White"
+                Padding="15"
+                BorderBrush="#E0E0E0"
+                BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock x:Name="StatusText"
+                          VerticalAlignment="Center"
+                          Foreground="{StaticResource TextColor}"/>
+
+                <Button Content="Закрити"
+                       Style="{StaticResource DangerButtonStyle}"
+                       HorizontalAlignment="Right"
+                       Click="CloseButton_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
